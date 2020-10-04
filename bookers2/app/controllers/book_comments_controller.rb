@@ -10,7 +10,7 @@ class BookCommentsController < ApplicationController
     if @book_comment.save
       redirect_to book_path(@book)
     else
-      render 'books/show'
+      render 'books/show' 
     end
   end
 
