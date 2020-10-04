@@ -1,7 +1,7 @@
 
 <div class="row">
 	<div class="col-xs-3">
-    <%= render 'users/profile', book: @book,user: @user  %>
+    <%= render 'users/profile', book: @book,user: @user%>
 	</div>
 
 	<div class="col-xs-9">
@@ -16,27 +16,27 @@
 						  <div><%= @user.name %></div>
 						<% end %>
 					</td>
-					<td><%= link_to @book_show.title, book_path(@book_show) %></td>
-					<td><%= @book_show.body %></td>
+					<td><%= link_to @book.title, book_path(@book) %></td>
+					<td><%= @book.body %></td>
 					<td class = "favorite-btn">
-						<% if @book_show.favorited_by?(current_user) %>
-							 <%= link_to @book_show.favorites.count, book_favorites_path(@book_show), method: :delete, class: "glyphicon glyphicon-heart" %>
+						<% if @book.favorited_by?(current_user) %>
+							 <%= link_to @book.favorites.count, book_favorites_path(@book), method: :delete, class: "glyphicon glyphicon-heart" %>
 						<% else %>
-							 <%= link_to @book_show.favorites.count, book_favorites_path(@book_show), method: :post, class: "glyphicon glyphicon-heart-empty" %>
+							 <%= link_to @book.favorites.count, book_favorites_path(@book), method: :post, class: "glyphicon glyphicon-heart-empty" %>
 						<% end %>
 					</td>
-					<td>コメント数:<%= @book_show.book_comments.count %></td>
+					<td>コメント数:<%= @book.book_comments.count %></td>
 			        
-			     	  <% if @book_show.user == current_user %>
-			          <td><%= link_to 'Edit', edit_book_path(@book_show.id), class: "btn-sm btn-success edit_book_#{@book_show.id}" %></td>
-			          <td><%= link_to 'Destroy', book_path(@book_show.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+			     	  <% if @book.user == current_user %>
+			          <td><%= link_to 'Edit', edit_book_path(@book.id), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
+			          <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn-sm btn-danger destroy_book_#{@book.id}"%></td>
 			        <% end %>
 				</tr>
 				</tbody>
 			</table>
 	    
 　　    <table>
-	         <% @book_show.book_comments.each do |book_comment| %>
+	         <% @book.book_comments.each do |book_comment| %>
 	         <tr>
 	          <td>
 	            <%= link_to user_path(book_comment.user),class:"user_#{book_comment.user_id}" do %>
@@ -53,7 +53,7 @@
 	        <% end %>
 	      </tr>
 	    </table>
-			  <%= form_with(model:[@book_show, @book_comment], local: true) do |f| %>
+			  <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
 			  <div class="row">
 			    <div class="col-sm-12">
 			      <%= f.text_area :comment, size:'90x5'%>
