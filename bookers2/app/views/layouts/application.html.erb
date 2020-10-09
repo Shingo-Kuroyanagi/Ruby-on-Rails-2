@@ -11,16 +11,17 @@
 
   <body>
     <%= render 'layouts/header' %>
-
     <div class="container">
+    <main>
+      <%if user_signed_in?%>
+       <%= render 'layouts/search'%>
+      <% end %>
       <p id="notice"><%= notice %></p>
+    <%= yield %>
+    </main>
     </div>
-
     <%= render 'layouts/footer' %>
+    
   </body>
-<div class="container">
-<main>
-<%= yield %>
-</main>
-</div>
-</html>
+    </html>
+  
